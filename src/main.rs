@@ -1,13 +1,11 @@
-use crate::rsa::RSATrait;
-pub mod rsa;
+use rsa_naive::rsa::{RSA, RSATrait};
 
 fn main() {
-    let musa = rsa::RSA::generate_key(2357,2551);
-    println!("{:?}", musa);
+    let musa = RSA::generate_key(2357,2551);
+    // println!("{:?}", musa);
     println!("[5,2,3,4,6,7,3]");
     let ct = musa.encrypt([5,2,3,4,6,7,3].to_vec());
     println!("{:?}", ct);
-    let musa = rsa::RSA::generate_key(2357,2551);
     let mt = musa.decrypt(ct);
     println!("{:?}", mt);
 }
