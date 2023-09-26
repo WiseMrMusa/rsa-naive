@@ -2,7 +2,7 @@ use rsa_naive::rsa::{RSA, RSATrait};
 
 fn main() {
     let musa = RSA::generate_key(2357,2551);
-    // println!("{:?}", musa);
+    println!("{}", musa);
     println!("[5,2,3,4,6,7,3]");
     let ct = musa.encrypt([5,2,3,4,6,7,3].to_vec());
     println!("{:?}", ct);

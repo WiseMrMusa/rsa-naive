@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::utils::{gcd, inversion,};
 use crate::field_point::FieldPoint;
 
@@ -52,5 +54,11 @@ impl RSATrait for RSA {
             m.num as u8
         }).collect();
         m
+    }
+}
+
+impl Display for RSA {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        writeln!(f, "The public key is {} in Field {}", self.public_key.e, self.public_key.n)
     }
 }
