@@ -1,15 +1,14 @@
-use rsa_naive::rsa::{RSA, RSATrait};
+use rsa_naive::rsa::{RSATrait, RSA};
 
 fn main() {
-    let musa = RSA::generate_key(2357,2551);
-    println!("{}", musa);
+    let musa = RSA::generate_key();
+    println!("key_generate {}", musa);
     println!("[5,2,3,4,6,7,3]");
-    let ct = musa.encrypt([5,2,3,4,6,7,3].to_vec());
-    println!("{:?}", ct);
+    let ct = musa.encrypt([5, 2, 3, 4, 6, 7, 3].to_vec());
+    println!("cypher text {:?}", ct);
     let mt = musa.decrypt(ct);
-    println!("{:?}", mt);
+    println!("message text {:?}", mt);
 }
-
 
 // #[cfg(test)]
 

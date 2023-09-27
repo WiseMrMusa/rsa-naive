@@ -1,4 +1,4 @@
-use std::ops::{ Add, Sub, Mul};
+use std::ops::{Add, Mul, Sub};
 
 pub struct FieldPoint {
     pub num: u128,
@@ -16,7 +16,10 @@ impl FieldPoint {
 
     pub fn power(self: &Self, index: u128) -> Self {
         if index == 0 {
-            FieldPoint { num: 1u128, prime: self.prime }
+            FieldPoint {
+                num: 1u128,
+                prime: self.prime,
+            }
         } else {
             let mut aux = index.rem_euclid(self.prime - 1);
             let mut acc = 1u128;
@@ -30,7 +33,10 @@ impl FieldPoint {
                     aux = aux - 1u128;
                 }
             }
-            FieldPoint { num: acc, prime: self.prime }
+            FieldPoint {
+                num: acc,
+                prime: self.prime,
+            }
         }
     }
 }
