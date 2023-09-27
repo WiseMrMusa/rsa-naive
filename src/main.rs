@@ -1,15 +1,15 @@
-use rsa_naive::rsa::{RSATrait, RSA};
+use rsa_naive::{rsa::{RSATrait, RSA}, utils::{decode_string_adapter, encode_string_adapter}};
 
 fn main() {
     let musa = RSA::generate_key();
-    println!("key_generate {}", musa);
-    println!("[5,2,3,4,6,7,3]");
-    let ct = musa.encrypt([5, 2, 3, 4, 6, 7, 3].to_vec());
-    println!("cypher text {:?}", ct);
-    let mt = musa.decrypt(ct);
-    println!("message text {:?}", mt);
+    let message = "Hello Crypto World";
+    println!("{}", message);
+    let ct = musa.encrypt(encode_string_adapter(message));
+    println!("{:?}", ct);
+    let pt = musa.decrypt(ct);
+    println!("{:?}", pt);
+    println!("{}", decode_string_adapter(&pt));
 }
-
 // #[cfg(test)]
 
 // #[test]

@@ -17,7 +17,7 @@ pub struct PublicKey {
 #[derive(Debug)]
 struct PrivateKey {
     d: u128,
-    phi: u128,
+    _phi: u128,
 }
 
 pub trait RSATrait {
@@ -39,14 +39,16 @@ impl RSATrait for RSA {
 
         // let e = rand::thread_rng().gen_range(0..phi);
         // what does this e stand for?
-        let e = 3674911;
+        // let e = 3674911;
+        let e = generate_random_prime();
         assert!(gcd(e, phi) == 1);
         let d = inversion(e.try_into().unwrap(), phi.try_into().unwrap());
+        println!("The public key is {} and N is {}", e, n);
         RSA {
             public_key: PublicKey { n, e },
             private_key: PrivateKey {
                 d: d.try_into().unwrap(),
-                phi,
+                _phi: phi,
             },
         }
     }
