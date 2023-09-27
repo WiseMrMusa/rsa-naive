@@ -85,3 +85,11 @@ pub fn generate_random_prime() -> u128 {
         }
     }
 }
+
+pub fn encode_string_adapter(m: &str) -> Vec<u8> {
+    m.chars().map(|x| x.try_into().unwrap()).collect()
+}
+
+pub fn decode_string_adapter(c: &Vec<u8>) -> String {
+    c.iter().map(|x| *x as char).collect()
+}
